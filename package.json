@@ -1,20 +1,44 @@
 {
-  "type": "module",
-  "name": "bongcheon",
+  "name": "bbq",
   "version": "1.0.0",
   "main": "crawl.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "crawl": "nodemon crawl.js --exec babel-node"
+    "crawl": "./node_modules/.bin/babel-node --max-http-header-size=800000 crawl.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryucm/BBQ.git"
+  },
+  "author": "Changmin Ryu",
   "license": "ISC",
-  "description": "",
+  "description": "bbq",
   "dependencies": {
+    "@babel/eslint-parser": "^7.18.9",
+    "@babel/eslint-plugin": "^7.17.7",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.9",
+    "@babel/plugin-proposal-optional-chaining": "^7.18.9",
+    "@babel/plugin-transform-async-to-generator": "^7.18.6",
     "axios": "^0.27.2",
+    "babel-plugin-module-resolver": "^4.1.0",
     "cheerio": "^1.0.0-rc.12",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-babel-module": "^5.3.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "express": "^4.18.1",
-    "request": "^2.88.2"
+    "puppeteer": "^15.5.0",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-stealth": "^2.11.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "yargs": "^17.5.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.9",
