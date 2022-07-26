@@ -1,5 +1,5 @@
 
-import request from 'request-promise'
+import request from 'request-promise';
 import * as cheerio from 'cheerio';
 import {
   Producer,
@@ -27,7 +27,7 @@ class MahagridProducer extends Producer {
 
 class MahagridConsumer extends Consumer {
   async consume(url) {
-    console.log(`consuming ${url}`);
+    // console.log(`consuming ${url}`);
     this.meta.pusher.push(url);
   }
 }
@@ -46,8 +46,8 @@ export default new Crawler({
     consumer: MahagridConsumer,
     producerCount: 1,
     consumerCount: 1,
-    browserOptions: {
-      headless: true,
-    }
+    // browserOptions: {
+    //   headless: true,
+    // }
   }
 });
