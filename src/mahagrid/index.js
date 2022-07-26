@@ -10,7 +10,7 @@ const baseUrl = 'http://mahagrid.com';
 class MahagridProducer extends Producer {
   async produce() {
     let response;
-    const pageUrl = `${baseUrl}/product/list.html?cate_no=24&page=1`;
+    const pageUrl = `${baseUrl}/product/list.html?cate_no=24&page={0}`;
     try {
       response = await request(pageUrl);
       console.log(`producing : ${pageUrl}`);
@@ -19,7 +19,8 @@ class MahagridProducer extends Producer {
     }
     const $ = cheerio.load(response);
     $('.mun-prd-thumb > a').each((_i,el) => {
-      const url = $(el).attr('href');
+      const parseUrl = $(el).attr('href');
+      const url = baseUrl + parseUrl;
       this.push(url);
     })
   }
@@ -27,8 +28,8 @@ class MahagridProducer extends Producer {
 
 class MahagridConsumer extends Consumer {
   async consume(url) {
-    // console.log(`consuming ${url}`);
-    this.meta.pusher.push(url);
+    console.log(`consuming ${url}`);
+    this.meta.pusher.push();
   }
 }
 
@@ -36,7 +37,7 @@ export default new Crawler({
   name: 'Maha Grid',
   defaults: {
     description: 'Maha Grid',
-   url: 'http://mahagrid.com',
+    url: 'http://mahagrid.com',
     country: 'kr',
     currency: 'W',
     language: 'kr',
