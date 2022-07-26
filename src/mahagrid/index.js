@@ -1,29 +1,34 @@
 
-import request from 'request'
-import  { cheerio } from 'cheerio';
+import request from 'request-promise'
+import * as cheerio from 'cheerio';
 import {
   Producer,
   Consumer,
 } from '../../lib/jobs';
 import { Crawler } from '../../lib/crawler'
-
+const baseUrl = 'http://mahagrid.com';
 class MahagridProducer extends Producer {
   async produce() {
-    const baseUrl = 'http://mahagrid.com';
     let response;
-    response = await request(`${baseUrl}/product/list.html?cate_no=24&page=1`);
+    const pageUrl = `${baseUrl}/product/list.html?cate_no=24&page=1`;
+    try {
+      response = await request(pageUrl);
+      console.log(`producing : ${pageUrl}`);
+    } catch (e) {
+      console.log(e);
+    }
     const $ = cheerio.load(response);
     $('.mun-prd-thumb > a').each((_i,el) => {
-      console.log($(el).text().trim());
-      this.push($(el).attr('href'))
+      const url = $(el).attr('href');
+      this.push(url);
     })
-    return;
   }
 }
 
 class MahagridConsumer extends Consumer {
-  async consume(job) {
-    return;
+  async consume(url) {
+    console.log(`consuming ${url}`);
+    this.meta.pusher.push(url);
   }
 }
 
