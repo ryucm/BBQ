@@ -48,8 +48,37 @@ class MahagridProducer extends Producer {
 
 class MahagridConsumer extends Consumer {
   async consume(url) {
+    let response;
     console.log(`consuming ${url}`);
-    this.meta.pusher.push(url);
+    try {
+      response = await request(url);
+    } catch (e) {
+      e
+      return;
+    }
+    const $ = cheerio.load(response);
+    const rawData = [];
+    $('.mun-detail-desc > span').each((_i,el) => {
+      rawData.push($(el).text().trim());;
+    })
+    const [itemName, productName, price, salePrice] = rawData;
+    const imageUrl = `http:${$('.mun-addimg-big img').attr('src')}`;
+    const color = $('[option_title="COLOR"] span').text().trim();
+    // const inform = 
+    const entries = [];
+    const entry = {
+      itemName,
+      productName,
+      price,
+      salePrice,
+      imageUrl,
+      url,
+      color,
+      // size
+      // inform,
+    }
+    entries.push(entry);
+    this.meta.pusher.push(entries);
   }
 }
 
