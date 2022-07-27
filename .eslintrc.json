@@ -1,0 +1,55 @@
+{
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "parser": "@babel/eslint-parser",
+    "extends": [
+      "airbnb-base"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "babelOptions": {
+        "configFile": "./.babelrc"
+      }
+    },
+    "rules": {
+      "indent": 1,
+      "guard-for-in": 0,
+      "no-await-in-loop": 0,
+      "class-methods-use-this": 0,
+      "consistent-return": 0,
+      "no-unused-expressions": 2,
+      "no-extend-native": 0,
+      "max-len": [
+        "error", 88, 2, {
+          "ignoreUrls": true,
+          "ignoreStrings": true
+        }
+      ],
+      "no-restricted-syntax": [
+        "error",
+        "LabeledStatement",
+        "WithStatement"
+      ],
+      "newline-per-chained-call": "off",
+      "object-curly-newline": "off",
+      "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    },
+    "settings": {
+      "import/resolver": {
+        "babel-module": {
+          "root": ["./src"]
+        },
+        "node": {
+          "paths": ["./src"]
+        }
+      }
+    }
+  }
+  
