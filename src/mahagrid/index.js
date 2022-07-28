@@ -13,6 +13,7 @@ import { Crawler } from '../../lib/crawler'
 const baseUrl = 'http://mahagrid.com';
 class MahagridProducer extends Producer {
   async produce() {
+    this.info('Start produce');
     let pageNum = this.constructor.pageStart;
     let pageNation = true;
     while(pageNation) {
@@ -25,15 +26,16 @@ class MahagridProducer extends Producer {
         break;
       }
     }
+    this.info('Finish produce');
   }
 
   async fetch(url) {
     let response;
     try {
       response = await request(url);
-      console.log(`producing : ${url}`);
+      this.debug(`producing : ${url}`);
     } catch (e) {
-      console.log(e);
+      this.error(e);
       return false;
     }
     const $ = cheerio.load(response);
@@ -49,11 +51,11 @@ class MahagridProducer extends Producer {
 class MahagridConsumer extends Consumer {
   async consume(url) {
     let response;
-    console.log(`consuming ${url}`);
+    this.info(`consuming ${url}`);
     try {
       response = await request(url);
     } catch (e) {
-      e
+      this.debug(`Fail to request ${e}`)
       return;
     }
     const $ = cheerio.load(response);
@@ -79,6 +81,7 @@ class MahagridConsumer extends Consumer {
     }
     entries.push(entry);
     this.meta.pusher.push(entries);
+    this.info('Finish consume');
   }
 }
 
