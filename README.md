@@ -18,11 +18,10 @@
 ## Concept
 
 Prod and Cons Using Queue
-- https://github.com/ryucm/Crawler.git
 - https://velog.io/@kidae92/Apache-Kafka-%EC%A3%BC%EC%9A%94-%EC%9A%94%EC%86%8C1Producer-Consumer-Topic
 
 ## Run
-
+- Must install npm
 ```js
 npm i package.json
 npm run crawl {sourceName}
