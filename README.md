@@ -18,8 +18,8 @@
 ## Concept
 
 Prod and Cons Using Queue
-https://github.com/ryucm/Crawler.git 참고.  
-https://velog.io/@kidae92/Apache-Kafka-%EC%A3%BC%EC%9A%94-%EC%9A%94%EC%86%8C1Producer-Consumer-Topic 참고.  
+- https://github.com/ryucm/Crawler.git
+- https://velog.io/@kidae92/Apache-Kafka-%EC%A3%BC%EC%9A%94-%EC%9A%94%EC%86%8C1Producer-Consumer-Topic
 
 ## Run
 
@@ -33,9 +33,11 @@ npm run crawl {sourceName}
 ![image](https://user-images.githubusercontent.com/89899249/187604223-895a8728-8b95-461e-9ba8-41ebe78f8c6a.jpeg)
 
 1. producer를 통해 main page에서 크롤링 할 데이터가 있는 상품의 url을 Queue에 넣는다.
+
 ![image](https://user-images.githubusercontent.com/89899249/187594801-2e412f0b-41b6-4570-85fa-9937a73720be.png)
 
 2. consumer에서 상품의 url을 전달받아 원하는 data의 크롤링을 전달하여 Pusher에 넣는다.
+
 ![image](https://user-images.githubusercontent.com/89899249/187594979-9f547797-63cf-4c52-97c9-711d614a03d8.png)
 
 3. Pusher에서는 endpoint로 각 data를 전달한다.
